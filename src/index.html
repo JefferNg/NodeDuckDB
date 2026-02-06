@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Node-Based DuckDB</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Block-Based DuckDB</h1>
+        <p class="subtitle">Visual Programming for Database Queries</p>
+      </header>
+
+      <div class="main-content">
+        <div class="workspace-container">
+          <div id="blocklyDiv" class="blockly-workspace"></div>
+        </div>
+
+        <div class="sidebar">
+          <div class="output-section">
+            <h3>Output</h3>
+            <div id="output" class="output-box"></div>
+          </div>
+
+          <div class="code-section">
+            <h3>Generated Code</h3>
+            <pre id="code" class="code-box"></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- <footer>
+        <p>
+          &copy; 2025 Node-Based DuckDB. Edit the toolbox to add your custom
+          blocks!
+        </p>
+      </footer> -->
+    </div>
+
+    <script src="bundle.js"></script>
+  </body>
+</html>

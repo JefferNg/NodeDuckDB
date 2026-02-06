@@ -1,0 +1,60 @@
+/**
+ * Toolbox definition for Node-Based DuckDB
+ * Add and modify blocks here to customize your workspace
+ */
+
+const toolbox = {
+  kind: "categoryToolbox",
+  contents: [
+    {
+      kind: "category",
+      name: "Operators",
+      contents: [
+        {
+          kind: "block",
+          type: "select_block",
+        },
+        {
+          kind: "block",
+          type: "where_block",
+        },
+      ],
+    },
+    {
+      kind: "category",
+      name: "Tables",
+      contents: [
+        {
+          kind: "block",
+          type: "from_block",
+        },
+      ],
+    },
+    {
+      kind: "category",
+      name: "Columns",
+      contents: [
+        {
+          kind: "block",
+          type: "columns_block",
+        },
+      ],
+    },
+    {
+      kind: "category",
+      name: "Variables",
+      contents: [
+        {
+          kind: "block",
+          type: "column_input_block",
+        },
+        {
+          kind: "block",
+          type: "value_input_block",
+        },
+      ],
+    },
+  ],
+};
+
+export { toolbox };
