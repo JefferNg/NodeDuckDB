@@ -98,14 +98,6 @@ NodeDuckDB/
 - `npm run server` - Start the Express backend server on port 3001
 - `npm run start` - Start a local development server for the frontend on port 8080
 
-## Troubleshooting
-
-**Port Already in Use**: If port 3001 or 8080 is already in use, you may need to close the conflicting application or modify the PORT variable in `server.js`.
-
-**TPCH Data Generation Fails**: Ensure your Node.js version supports the DuckDB Node API. Try upgrading to the latest Node.js LTS version.
-
-**Blockly Not Loading**: Clear your browser cache and ensure all dependencies are installed with `npm install`.
-
 ## Learning Resources
 
 - [DuckDB Documentation](https://duckdb.org/docs/)
