@@ -64,14 +64,26 @@ header .subtitle {
   width: 350px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 0;
 }
 
 .output-section,
 .code-section {
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.output-section,
+.code-section,
+.tables-section {
+  background: white;
+  border-radius: 0;
+  box-shadow: none;
   padding: 15px;
   flex: 1;
   display: flex;
@@ -80,6 +92,16 @@ header .subtitle {
 
 .output-section h3,
 .code-section h3 {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: #667eea;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 8px;
+}
+
+.output-section h3,
+.code-section h3,
+.tables-section h3 {
   font-size: 1.1em;
   margin-bottom: 10px;
   color: #667eea;
@@ -114,6 +136,98 @@ header .subtitle {
   line-height: 1.5;
   min-height: 200px;
   margin: 0;
+}
+
+.tables-box {
+  flex: 1;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 0.9em;
+  overflow-y: auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  max-height: 400px;
+}
+
+/* Tab styles */
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #e0e0e0;
+  padding: 0 15px;
+  background: white;
+}
+
+.tab-button {
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95em;
+  color: #666;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  margin-bottom: -2px;
+}
+
+.tab-button:hover {
+  color: #667eea;
+}
+
+.tab-button.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+}
+
+.tab-content {
+  display: none;
+  flex: 1;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 15px 15px 15px;
+  overflow-y: auto;
+}
+
+.tab-content.active {
+  display: flex;
+}
+
+.tables-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-item {
+  padding: 10px;
+  background-color: #f0f4ff;
+  border: 1px solid #d0d8ff;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  font-family: "Courier New", monospace;
+  color: #333;
+  font-size: 0.9em;
+  word-break: break-word;
+}
+
+.table-item:hover {
+  background-color: #e6ecff;
+  border-color: #667eea;
+}
+
+#tables-list {
+  white-space: pre-wrap;
 }
 
 footer {

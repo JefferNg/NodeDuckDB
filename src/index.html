@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -19,14 +19,32 @@
         </div>
 
         <div class="sidebar">
-          <div class="output-section">
-            <h3>Output</h3>
-            <div id="output" class="output-box"></div>
-          </div>
+          <div class="tabs-container">
+            <div class="tabs">
+              <button class="tab-button active" data-tab="output-code">
+                Output & Code
+              </button>
+              <button class="tab-button" data-tab="tables">Tables</button>
+            </div>
 
-          <div class="code-section">
-            <h3>Generated Code</h3>
-            <pre id="code" class="code-box"></pre>
+            <div id="output-code" class="tab-content active">
+              <div class="output-section">
+                <h3>Output</h3>
+                <div id="output" class="output-box"></div>
+              </div>
+
+              <div class="code-section">
+                <h3>Generated Code</h3>
+                <pre id="code" class="code-box"></pre>
+              </div>
+            </div>
+
+            <div id="tables" class="tab-content">
+              <div class="tables-section">
+                <h3>Database Tables</h3>
+                <div id="tables-list" class="tables-box"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

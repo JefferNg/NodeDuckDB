@@ -32,6 +32,34 @@ const DuckDB = {
       return { error: error.message };
     }
   },
+
+  getTables: async () => {
+    try {
+      const response = await fetch(`${API_URL}/tables`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.ok) {
+        console.log("Tables:", data.data);
+        return data.data || [];
+      } else {
+        console.error("Tables Error:", data.error);
+        return [];
+      }
+    } catch (error) {
+      console.error("Error fetching tables:", error);
+      return [];
+    }
+  },
 };
 
 export default DuckDB;

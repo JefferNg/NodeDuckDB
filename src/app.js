@@ -13,6 +13,7 @@ Blockly.common.defineBlocks(blocks);
 
 const codeDiv = document.getElementById("code");
 const outputDiv = document.getElementById("output");
+const tableDiv = document.getElementById("tables-list");
 const workspace = Blockly.inject("blocklyDiv", {
   toolbox: toolbox,
   collapse: true,
@@ -62,3 +63,45 @@ workspace.addChangeListener((event) => {
     return;
   runCode();
 });
+// Tab switching functionality
+const tabButtons = document.querySelectorAll(".tab-button");
+const tabContents = document.querySelectorAll(".tab-content");
+
+tabButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const tabName = button.getAttribute("data-tab");
+
+    // Remove active class from all buttons and contents
+    tabButtons.forEach((btn) => btn.classList.remove("active"));
+    tabContents.forEach((content) => content.classList.remove("active"));
+
+    // Add active class to clicked button and corresponding content
+    button.classList.add("active");
+    document.getElementById(tabName).classList.add("active");
+
+    // Load tables list if switching to tables tab
+    if (tabName === "tables") {
+      loadTablesList();
+    }
+  });
+});
+
+// Function to load and display database tables
+const loadTablesList = async () => {
+  tableDiv.textContent = "Loading tables...";
+
+  try {
+    const tables = await DuckDB.getTables();
+
+    if (tables && tables.length > 0) {
+      tableDiv.textContent = "";
+      for (const key in tables) {
+        tableDiv.textContent += JSON.stringify(tables[key], null) + "\n";
+      }
+    } else {
+      tableDiv.textContent = "No tables found in database";
+    }
+  } catch (error) {
+    tableDiv.innerHTML = `<p style="color: red;">Error loading tables: ${error.message}</p>`;
+  }
+};

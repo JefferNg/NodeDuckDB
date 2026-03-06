@@ -43,7 +43,7 @@ app.post("/api/query", async (req, res) => {
     try {
       const conn = await db.connect();
 
-      // Execute query and get results
+      // Execute query and get 10 results
       const result = await conn.streamAndReadUntil(sql + ";", 10);
       console.log("Query executed successfully");
 
@@ -63,6 +63,29 @@ app.post("/api/query", async (req, res) => {
       });
     }
   } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message,
+    });
+  }
+});
+
+app.get("/api/tables", async (req, res) => {
+  try {
+    const conn = await db.connect();
+
+    // Get list of tables in database
+    const result = await conn.stream("SHOW tables;");
+
+    const rows = await result.getRows();
+    console.log("Tables successfully retrieved");
+
+    res.json({
+      ok: true,
+      data: rows,
+    });
+  } catch (error) {
+    console.error("Error fetching tables:", error.message);
     res.status(500).json({
       ok: false,
       error: error.message,
