@@ -16,14 +16,13 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         check: "Table",
       },
     ],
-    previousStatement: "select_block",
     nextStatement: null,
     colour: 225,
     tooltip: "Create a SQL SELECT statement",
     helpUrl: "",
   },
   {
-    type: "from_block",
+    type: "from_value_block",
     message0: "TABLE %1",
     args0: [
       {
@@ -70,7 +69,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       },
     ],
     previousStatement: null,
-    nextStatement: null,
+    nextStatement: ["and_block"],
     colour: 225,
     inputsInline: true,
   },
@@ -86,7 +85,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         text: "",
       },
     ],
-    output: null,
+    output: "Value",
     colour: 100,
   },
   {
@@ -101,7 +100,29 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         text: "",
       },
     ],
-    output: null,
+    output: "Value",
     colour: 100,
+  },
+  {
+    type: "and_block",
+    tooltip: "Add additional filtering statements",
+    helpUrl: "",
+    message0: "AND %1 = %2",
+    args0: [
+      {
+        type: "input_value",
+        name: "LEFT",
+        check: "Value",
+      },
+      {
+        type: "input_value",
+        name: "RIGHT",
+        check: "Value",
+      },
+    ],
+    previousStatement: ["where_block", "and_block"],
+    nextStatement: ["and_block"],
+    colour: 225,
+    inputsInline: false,
   },
 ]);

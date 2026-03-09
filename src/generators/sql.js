@@ -13,7 +13,7 @@ sqlGenerator.forBlock["select_block"] = function (block, generator) {
   return code;
 };
 
-sqlGenerator.forBlock["from_block"] = function (block) {
+sqlGenerator.forBlock["from_value_block"] = function (block) {
   const tableName = block.getFieldValue("TABLE_NAME");
   const code = `${tableName}`;
   return [code, Order.ATOMIC];
@@ -42,6 +42,13 @@ sqlGenerator.forBlock["value_input_block"] = function (block) {
   const value = block.getFieldValue("VALUE");
   const code = `\'${value}\'`;
   return [code, Order.ATOMIC];
+};
+
+sqlGenerator.forBlock["and_block"] = function (block, generator) {
+  const leftCode = generator.valueToCode(block, "LEFT", Order.ATOMIC);
+  const rightCode = generator.valueToCode(block, "RIGHT", Order.ATOMIC);
+  const code = `AND ${leftCode} = ${rightCode}`;
+  return code;
 };
 
 sqlGenerator.scrub_ = function (block, code, thisOnly) {

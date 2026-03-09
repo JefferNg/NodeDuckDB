@@ -18,6 +18,10 @@ const toolbox = {
           kind: "block",
           type: "where_block",
         },
+        {
+          kind: "block",
+          type: "and_block",
+        },
       ],
     },
     {
@@ -26,7 +30,7 @@ const toolbox = {
       contents: [
         {
           kind: "block",
-          type: "from_block",
+          type: "from_value_block",
         },
       ],
     },
