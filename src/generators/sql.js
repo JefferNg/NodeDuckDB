@@ -26,14 +26,13 @@ sqlGenerator.forBlock["columns_block"] = function (block) {
 };
 
 sqlGenerator.forBlock["where_block"] = function (block, generator) {
-  const leftCode = generator.valueToCode(block, "LEFT", Order.ATOMIC);
-  const rightCode = generator.valueToCode(block, "RIGHT", Order.ATOMIC);
-  const code = `WHERE ${leftCode} = ${rightCode}`;
+  const conditional = generator.valueToCode(block, "CONDITIONAL", Order.ATOMIC);
+  const code = `WHERE ${conditional}`;
   return code;
 };
 
 sqlGenerator.forBlock["column_input_block"] = function (block) {
-  const value = block.getFieldValue("VALUE");
+  const value = block.getFieldValue("COLUMN");
   const code = `${value}`;
   return [code, Order.ATOMIC];
 };
@@ -49,6 +48,14 @@ sqlGenerator.forBlock["and_block"] = function (block, generator) {
   const rightCode = generator.valueToCode(block, "RIGHT", Order.ATOMIC);
   const code = `AND ${leftCode} = ${rightCode}`;
   return code;
+};
+
+sqlGenerator.forBlock["conditional_block"] = function (block, generator) {
+  const leftCode = generator.valueToCode(block, "COLUMN_NAME", Order.ATOMIC);
+  const op = block.getFieldValue("OPERATOR");
+  const rightCode = generator.valueToCode(block, "VALUE", Order.ATOMIC);
+  const code = `${leftCode} ${op} ${rightCode}`;
+  return [code, Order.ATOMIC];
 };
 
 sqlGenerator.scrub_ = function (block, code, thisOnly) {

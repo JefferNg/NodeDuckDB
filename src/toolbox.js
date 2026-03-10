@@ -58,6 +58,16 @@ const toolbox = {
         },
       ],
     },
+    {
+      kind: "category",
+      name: "Logic",
+      contents: [
+        {
+          kind: "block",
+          type: "conditional_block",
+        },
+      ],
+    },
   ],
 };
 

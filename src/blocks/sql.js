@@ -1,4 +1,5 @@
 import * as Blockly from "blockly";
+import { colour } from "blockly/blocks";
 
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
@@ -55,17 +56,12 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     type: "where_block",
     tooltip: "Specify a WHERE condition",
     helpUrl: "",
-    message0: "WHERE %1 = %2",
+    message0: "WHERE %1",
     args0: [
       {
         type: "input_value",
-        name: "LEFT",
-        check: "Value",
-      },
-      {
-        type: "input_value",
-        name: "RIGHT",
-        check: "Value",
+        name: "CONDITIONAL",
+        check: "Conditional",
       },
     ],
     previousStatement: null,
@@ -77,22 +73,22 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     type: "column_input_block",
     tooltip: "Input any column name",
     helpUrl: "",
-    message0: "%1",
+    message0: "Column %1",
     args0: [
       {
         type: "field_input",
-        name: "VALUE",
+        name: "COLUMN",
         text: "",
       },
     ],
-    output: "Value",
+    output: "Column",
     colour: 100,
   },
   {
     type: "value_input_block",
     tooltip: "Input any value",
     helpUrl: "",
-    message0: "'%1'",
+    message0: "Value '%1'",
     args0: [
       {
         type: "field_input",
@@ -112,7 +108,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       {
         type: "input_value",
         name: "LEFT",
-        check: "Value",
+        check: "Column",
       },
       {
         type: "input_value",
@@ -124,5 +120,38 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     nextStatement: ["and_block"],
     colour: 225,
     inputsInline: false,
+  },
+  {
+    type: "conditional_block",
+    tooltip: "Filter tables via conditions",
+    helpUrl: "",
+    message0: "%1 %2 %3",
+    args0: [
+      {
+        type: "input_value",
+        name: "COLUMN_NAME",
+        check: "Column",
+      },
+      {
+        type: "field_dropdown",
+        name: "OPERATOR",
+        options: [
+          // ["visual", "logic"]
+          ["=", "="],
+          ["<", "<"],
+          ["<=", "<="],
+          [">", ">"],
+          [">=", ">="],
+        ],
+      },
+      {
+        type: "input_value",
+        name: "VALUE",
+        check: "Value",
+      },
+    ],
+    output: "Conditional",
+    colour: 190,
+    inputsInline: true,
   },
 ]);
