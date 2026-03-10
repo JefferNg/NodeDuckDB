@@ -32,9 +32,8 @@ sqlGenerator.forBlock["value_input_block"] = function (block) {
 };
 
 sqlGenerator.forBlock["and_block"] = function (block, generator) {
-  const leftCode = generator.valueToCode(block, "LEFT", Order.ATOMIC);
-  const rightCode = generator.valueToCode(block, "RIGHT", Order.ATOMIC);
-  const code = `AND ${leftCode} = ${rightCode}`;
+  const conditional = generator.valueToCode(block, "CONDITIONAL", Order.ATOMIC);
+  const code = `AND ${conditional}`;
   return code;
 };
 

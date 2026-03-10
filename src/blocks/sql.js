@@ -72,17 +72,12 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     type: "and_block",
     tooltip: "Add additional filtering statements",
     helpUrl: "",
-    message0: "AND %1 = %2",
+    message0: "AND %1",
     args0: [
       {
         type: "input_value",
-        name: "LEFT",
-        check: "Column",
-      },
-      {
-        type: "input_value",
-        name: "RIGHT",
-        check: "Value",
+        name: "CONDITIONAL",
+        check: "Conditional",
       },
     ],
     previousStatement: ["where_block", "and_block"],
@@ -111,6 +106,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
           ["<=", "<="],
           [">", ">"],
           [">=", ">="],
+          ["!=", "!="],
         ],
       },
       {
