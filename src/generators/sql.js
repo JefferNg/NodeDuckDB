@@ -8,21 +8,9 @@ const Order = {
 
 sqlGenerator.forBlock["select_block"] = function (block, generator) {
   const columnsCode = generator.valueToCode(block, "COLUMNS", Order.ATOMIC);
-  const fromCode = generator.valueToCode(block, "FROM", Order.ATOMIC);
+  const fromCode = block.getFieldValue("FROM");
   const code = `SELECT ${columnsCode} FROM ${fromCode}`;
   return code;
-};
-
-sqlGenerator.forBlock["from_value_block"] = function (block) {
-  const tableName = block.getFieldValue("TABLE_NAME");
-  const code = `${tableName}`;
-  return [code, Order.ATOMIC];
-};
-
-sqlGenerator.forBlock["columns_block"] = function (block) {
-  const columns = block.getFieldValue("COLUMNS");
-  const code = `${columns}`;
-  return [code, Order.ATOMIC];
 };
 
 sqlGenerator.forBlock["where_block"] = function (block, generator) {

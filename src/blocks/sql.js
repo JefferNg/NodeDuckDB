@@ -1,5 +1,4 @@
 import * as Blockly from "blockly";
-import { colour } from "blockly/blocks";
 
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
@@ -9,47 +8,17 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       {
         type: "input_value",
         name: "COLUMNS",
-        check: "Columns",
+        check: "Column",
       },
       {
-        type: "input_value",
+        type: "field_dropdown",
         name: "FROM",
-        check: "Table",
+        options: [["Loading tables...", ""]],
       },
     ],
     nextStatement: null,
     colour: 225,
     tooltip: "Create a SQL SELECT statement",
-    helpUrl: "",
-  },
-  {
-    type: "from_value_block",
-    message0: "TABLE %1",
-    args0: [
-      {
-        type: "field_input",
-        name: "TABLE_NAME",
-        text: "table_name",
-      },
-    ],
-    output: "Table",
-    colour: 45,
-    tooltip: "Specify a table name",
-    helpUrl: "",
-  },
-  {
-    type: "columns_block",
-    message0: "COLUMNS %1",
-    args0: [
-      {
-        type: "field_input",
-        name: "COLUMNS",
-        text: "*",
-      },
-    ],
-    output: "Columns",
-    colour: 290,
-    tooltip: "Specify which columns to select",
     helpUrl: "",
   },
   {

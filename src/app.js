@@ -45,6 +45,8 @@ const workspace = Blockly.inject("blocklyDiv", {
   },
 });
 
+let tablesLoaded = false;
+
 const runCode = () => {
   const block = workspace.getTopBlocks(true)[0];
   const code = sqlGenerator.blockToCode(block);
@@ -61,6 +63,28 @@ workspace.addChangeListener((event) => {
     workspace.isDragging()
   )
     return;
+
+  if (
+    event.type === Blockly.Events.BLOCK_CREATE ||
+    event.type === Blockly.Events.BLOCK_MOVE
+  ) {
+    const block = workspace.getBlockById(event.blockId);
+    if (block && block.type === "select_block") {
+      populateTableDropdown();
+    }
+  }
+
+  if (event.type === Blockly.Events.BLOCK_DELETE) {
+    if (event.blockId) {
+      const remainingSelectBlocks = workspace
+        .getAllBlocks()
+        .filter((b) => b.type === "select_block");
+      if (remainingSelectBlocks.length === 0) {
+        tablesLoaded = false;
+      }
+    }
+  }
+
   runCode();
 });
 // Tab switching functionality
@@ -103,5 +127,27 @@ const loadTablesList = async () => {
     }
   } catch (error) {
     tableDiv.innerHTML = `<p style="color: red;">Error loading tables: ${error.message}</p>`;
+  }
+};
+const populateTableDropdown = async () => {
+  if (tablesLoaded) {
+    return;
+  }
+
+  try {
+    const tables = await DuckDB.getTables();
+    const options = tables.map((table) => [table[0], table[0]]);
+
+    workspace.getAllBlocks().forEach((block) => {
+      if (block.type == "select_block") {
+        const field = block.getField("FROM");
+        if (field) {
+          field.setOptions(options);
+        }
+      }
+    });
+    tablesLoaded = true;
+  } catch (error) {
+    console.error("Error populating table dropdown:", error);
   }
 };

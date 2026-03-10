@@ -26,26 +26,6 @@ const toolbox = {
     },
     {
       kind: "category",
-      name: "Tables",
-      contents: [
-        {
-          kind: "block",
-          type: "from_value_block",
-        },
-      ],
-    },
-    {
-      kind: "category",
-      name: "Columns",
-      contents: [
-        {
-          kind: "block",
-          type: "columns_block",
-        },
-      ],
-    },
-    {
-      kind: "category",
       name: "Variables",
       contents: [
         {
